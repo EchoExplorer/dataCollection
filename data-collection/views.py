@@ -55,11 +55,11 @@ def storeGameLevelData(request):
 	if echoLocsString != '':
 		echoLocsString = echoLocsString.split(';')
 		for echo in echoLocsString:
-			print 'in the loop'
 			indices = echo.split(',')
 
 			newCrashLoc = CrashLocation(x=int(float(indices[0])),
-						  				y=int(float(indices[1])))
+						  				y=int(float(indices[1])),
+						  				detail=indices[2])
 			newCrashLoc.save()
 			echoLocs.append(newCrashLoc)
 
@@ -88,6 +88,8 @@ def storeGameLevelData(request):
 							 timeElapsed = int(request.POST['timeElapsed']),
 							 score = int(request.POST['score']))
 	newGameLevel.save()
+
+	print "saved the game level without crash locations"
 
 	if echoLocs != []:
 		newGameLevel.crashLocs.add(*echoLocs)

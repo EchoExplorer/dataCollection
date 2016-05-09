@@ -3,6 +3,7 @@ from django.db import models
 class CrashLocation(models.Model):
 	x = models.IntegerField(max_length=3)
 	y = models.IntegerField(max_length=3)
+	detail = models.CharField(max_length=300)
 
 class GameLevel(models.Model):
 	level = models.IntegerField(max_length=3)
